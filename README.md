@@ -11,6 +11,7 @@
 <span style="padding-left: 100px;">-f FILENAME, --filename FILENAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name of file with a list of emails</span></br>
 <span style="padding-left: 100px;">-t THREADS, --threads THREADS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number of threads, default 4</span></br>
 <span style="padding-left: 100px;">-o OUT, --out OUT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name of output file</span></br>
+<span style="padding-left: 100px;">-i, --invalid &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if used with --out will give a file invalid.outputfilename else will print in std out</span></br>
 <p>
 Examples:</br>
 python glxu.py -s example@gmail.com</br>

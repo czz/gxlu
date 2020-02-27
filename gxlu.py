@@ -46,10 +46,10 @@ def write_to_file(hnd, data):
 #
 # Write to standard out ( default )
 #
-def write_to_stdout(data):
+def write_to_stdout(data, tag = ''):
     for d in data:
         if d is not None:
-            print "%s" % (d)
+            print "%s %s" % (d, tag)
 
 
 
@@ -65,6 +65,7 @@ parser.add_argument("-s", "--single", help="single email. Only one address")
 parser.add_argument("-f", "--filename", help="Name of file with a list of emails")
 parser.add_argument("-t", "--threads", help="number of threads, default 4")
 parser.add_argument("-o", "--out", help="Name of output file")
+parser.add_argument("-i", "--invalid", help="if used with --out will give a file invalid.outputfilename else will print in std out", action="store_true")
 args = parser.parse_args()
 
 
@@ -79,7 +80,6 @@ if args.threads:
 if ((args.single and args.filename) or (not args.single and not args.filename)):
      parser.print_help()
      parser.exit(1)
-
 
 # make the Pool of workers
 pool = ThreadPool(threads) 
@@ -96,6 +96,9 @@ if args.single:
 if args.out:
     out = open(args.out,"w")
 
+if args.invalid:
+    if args.out:
+        invalid = open("invalid." + args.out,"w")
 
 if args.filename:
 
@@ -117,10 +120,19 @@ if args.filename:
             emails.append(line)
             if (i%threads == 0):
                 results= pool.map(partial(check, verbose=verbose), emails)
+
                 if args.out:
                     write_to_file(out,results)
                 else:
                     write_to_stdout(results)
+
+                if args.invalid:
+                    if args.out:
+                        write_to_file(invalid,set(emails)-set(results))
+                    else:
+                        write_to_stdout(set(emails)-set(results), "NOT VALID")
+
+
                 emails = []
                 flag = 0
             else:
@@ -132,6 +144,14 @@ if args.filename:
                 write_to_file(out,results)
             else:
                 write_to_stdout(results)
+
+
+            if args.invalid:
+                if args.out:
+                    write_to_file(invalid,set(emails)-set(results))
+                else:
+                    write_to_stdout(set(emails)-set(results), "NOT VALID")
+
 
     if not args.out:
         print ""
